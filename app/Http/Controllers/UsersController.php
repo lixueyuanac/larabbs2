@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use App\Handlers\ImageUploadHandler;
+use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
@@ -21,6 +22,10 @@ class UsersController extends Controller
 
     public function edit(User $user)
     {
+        if ($user->cant('update',$user)){
+            //页面跳转逻辑
+            return view('errors.403');
+        }
         $this->authorize('update', $user);
         return view('users.edit', compact('user'));
     }
