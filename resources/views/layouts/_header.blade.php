@@ -33,7 +33,7 @@
                     <li><a href="{{ route('register') }}">注册</a></li>
                 @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        <a href="{{route('topics.create')}}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="user-avatar pull-left" style="margin-right:8px; margin-top:-5px;">
                                 <img src="{{Auth::user()->avatar}}" class="img-responsive img-circle" width="30px" height="30px">
                             </span>
