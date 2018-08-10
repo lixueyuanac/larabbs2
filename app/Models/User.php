@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+
 class User extends Authenticatable
 {
     use Notifiable {
         notify as protected laravelNotify;
     }
+
     public function notify($instance)
     {
         // 如果要通知的人是当前用户，就不必通知了！
@@ -26,7 +28,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','introduction','avatar',
+        'name', 'email', 'password', 'introduction', 'avatar',
     ];
 
     /**
@@ -37,16 +39,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function topics(){
+
+    public function topics()
+    {
         return $this->hasMany(Topic::class);
     }
 
-    public function isAuthorOf($model){
-        return $this->id=$model->user_id;
+    public function isAuthorOf($model)
+    {
+        return $this->id === $model->user_id;
     }
-    public function replies(){
+
+    public function replies()
+    {
         return $this->hasMany(Reply::class);
     }
+
     public function markAsRead()
     {
         $this->notification_count = 0;
