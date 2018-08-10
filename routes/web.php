@@ -49,3 +49,5 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 //Route::get('/',function(){
 //    return debug_backtrace();
 //});
+
+Route::resource('notifications', 'NotificationsController', ['only'=>['index']]);
